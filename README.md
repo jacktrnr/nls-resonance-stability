@@ -7,7 +7,7 @@ Companion code for the paper
 > *(arXiv:XXXX.XXXXX)*
 
 A Julia toolkit for studying the focusing 1D cubic NLS / Gross–Pitaevskii equation
-\begin{equation} i\partial_t\Psi = -\partial_x^2\Psi + V(x)\Psi - |\Psi|^2\Psi \end{equation}
+$i\partial_t\Psi = -\partial_x^2\Psi + V(x)\Psi - |\Psi|^2\Psi$
 in the presence of a compactly supported linear potential $V$, focusing on the
 nonlinear bound states that bifurcate from **scattering** and **transmission
 resonances** of $H_V = -\partial_x^2 + V$.
