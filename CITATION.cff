@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+title: nls-resonance-stability
+message: >-
+  If you use this software, please cite the accompanying paper.
+type: software
+authors:
+  - family-names: Turner
+    given-names: Jackson C.
+    affiliation: Columbia University
+    email: jt3287@columbia.edu
+  - family-names: Weinstein
+    given-names: Michael I.
+    affiliation: Columbia University
+    email: miw2013@columbia.edu
+preferred-citation:
+  type: article
+  title: >-
+    Sharp stability conditions of resonance-induced nonlinear bound states
+  authors:
+    - family-names: Turner
+      given-names: Jackson C.
+    - family-names: Weinstein
+      given-names: Michael I.
+  year: 2026
+license: MIT

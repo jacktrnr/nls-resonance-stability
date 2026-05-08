@@ -1,0 +1,190 @@
+\begin{figure}[ht]
+\centering
+\setlength{\abovecaptionskip}{6pt}
+%% ==================== PANEL (a): HALF-LINE ====================
+\begin{subfigure}[t]{0.48\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth, font=\small]
+  % ------- Main N-E diagram (upper portion) -------
+  \draw[->] (-4.3,3.2) -- (0.4,3.2) node[right] {$E$};
+  \draw[->] (0,3.1) -- (0,6.5) node[above] {$\mathcal{N}$};
+  % Soliton curve
+  \draw[orange, dashed, thick, domain=0.04:4.0, samples=80]
+    plot ({-\x}, {3.2+1.5*sqrt(\x)});
+  \node[orange, font=\scriptsize, anchor=east] at (-3.6, 6.35) {$4\sqrt{|E|}$};
+  % Bifurcation point
+  \fill (-1, 4.7) circle (2pt);
+  % \node[font=\scriptsize, anchor=south west] at (-0.95, 4.75)
+  %   {$\boldsymbol{(E_\star,\mathcal{N}_\star)}$};
+  \draw (-1,3.2) -- (-1,3.1); % small vertical tick
+\node[font=\scriptsize, anchor=north] at (-1,3.1) {$E_\star$};
+\draw (0,4.7) -- (0.1,4.7); % small horizontal tick
+\node[font=\scriptsize, anchor=west] at (0.1,4.7) {$\mathcal{N}_\star$};
+  % Branch (gentle slope, going left, slope < soliton)
+  \draw[thick, domain=0:2.6, samples=40]
+    plot ({-1-\x}, {4.7 + 0.5*\x - 0.015*\x*\x});
+  % Dashed zoom box
+  \draw[dashed, thick] (-1.55, 4.2) rectangle (-0.45, 5.2);
+  %
+  % ------- Inset (lower portion) -------
+  \pgfmathsetmacro{\bx}{-2.3}   % bif point x (centered)
+  \pgfmathsetmacro{\by}{1.35}   % bif point y (centered)
+  \pgfmathsetmacro{\Lx}{-4.2}   % left edge
+  \pgfmathsetmacro{\Rx}{-0.4}   % right edge
+  \pgfmathsetmacro{\By}{0.0}    % bottom
+  \pgfmathsetmacro{\Ty}{2.7}    % top
+  % Soliton tangent: slope (rise per unit leftward from bif)
+  \pgfmathsetmacro{\msol}{0.55}
+  % Soliton line values at edges
+  \pgfmathsetmacro{\soly}{\by + (\bx - \Lx)*\msol}   % left edge (going up)
+  \pgfmathsetmacro{\solyr}{\by - (\Rx - \bx)*\msol}   % right edge (going down)
+  %
+  % --- Fills (clip to inset box) ---
+  \begin{scope}
+    \clip (\Lx,\By) rectangle (\Rx,\Ty);
+    % Orange LEFT of bif: between horizontal and soliton tangent going up
+    \fill[orange!20] (\bx,\by) -- (\Lx,\soly) -- (\Lx,\by) -- cycle;
+    % Orange RIGHT of bif: between soliton tangent going down and horizontal
+    \fill[orange!20] (\bx,\by) -- (\Rx,\by) -- (\Rx,\solyr) -- cycle;
+  \end{scope}
+  %
+  % --- Lines ---
+  \draw[thin, gray] (\Lx,\by) -- (\Rx,\by); % horizontal
+  \begin{scope}
+    \clip (\Lx,\By) rectangle (\Rx,\Ty);
+    \draw[orange, dashed, thick] (\Lx,\soly) -- (\Rx,\solyr); % soliton tangent
+  \end{scope}
+  %
+  % --- Bifurcation curve in inset ---
+  \begin{scope}
+    \clip (\Lx,\By) rectangle (\Rx,\Ty);
+    \draw[very thick, domain=0:2.2, samples=40]
+      plot ({\bx-\x}, {\by + 0.8*\msol*\x - 0.07*\x*\x});
+  \end{scope}
+  \draw[dashed, black] (\bx,\By) -- (\bx,\Ty);
+  %
+  % --- Labels ---
+  \node[orange!70!black, font=\tiny] at (-3.5, 1.6) {$\Omega_\star > 0$};
+  \node[font=\tiny] at (-3.3, 2.3) {$\Omega_\star < 0$};
+  \node[gray, font=\scriptsize] at (-3.3, 0.5) {$d\mathcal{N}/dE > 0$};
+  %
+  \fill (\bx,\by) circle (1.5pt);
+  \draw[thick] (\Lx,\By) rectangle (\Rx,\Ty);
+  %
+  % ------- Connecting lines -------
+  \draw[thin, gray] (-1.55, 4.2) -- (\Lx, \Ty);
+  \draw[thin, gray] (-0.45, 4.2) -- (\Rx, \Ty);
+\end{tikzpicture}
+\vspace{-0.5em}
+\subcaption{Half-line (scattering resonance)}
+\end{subfigure}\hfill
+%% ==================== PANEL (b): TRANSMISSION ====================
+\begin{subfigure}[t]{0.48\linewidth}
+\centering
+\begin{tikzpicture}[>=Stealth, font=\small]
+  % ------- Main N-E diagram (upper portion) -------
+  \draw[->] (-4.3,3.2) -- (0.4,3.2) node[right] {$E$};
+  \draw[->] (0,3.1) -- (0,6.5) node[above] {$\mathcal{N}$};
+  % Soliton curve
+  \draw[orange, dashed, thick, domain=0.04:4.0, samples=80]
+    plot ({-\x}, {3.2+1.5*sqrt(\x)});
+  \node[orange, font=\scriptsize, anchor=east] at (-3.6, 6.35) {$4\sqrt{|E|}$};
+  % Omega=0 line in main view
+  \draw[green!50!black, dashed, thick, domain=-1.0:2.3, samples=2]
+    plot ({-1-\x}, {4.7 + 0.85*\x});
+  \node[green!50!black, font=\scriptsize, anchor=south east] at (-3.0, 6.55) {$\Omega_\star=0$};
+  % Bifurcation point
+  \fill (-1, 4.7) circle (2pt);
+\draw (-1,3.2) -- (-1,3.1); % small vertical tick
+\node[font=\scriptsize, anchor=north] at (-1,3.1) {$E_\star$};
+\draw (0,4.7) -- (0.1,4.7); % small horizontal tick
+\node[font=\scriptsize, anchor=west] at (0.1,4.7) {$\mathcal{N}_\star$};
+  % \node[font=\scriptsize, anchor=south west] at (-0.95, 4.75)
+  %   {$\boldsymbol{(E_\star,\mathcal{N}_\star)}$};
+  % Branch (steep slope, going left, steeper than Omega=0)
+  \draw[thick, domain=0:2.4, samples=40]
+    plot ({-1-\x}, {4.7 + 1.05*\x - 0.04*\x*\x});
+  % Dashed zoom box
+  \draw[dashed, thick] (-1.55, 4.2) rectangle (-0.45, 5.2);
+  %
+  % ------- Inset (lower portion) -------
+  \pgfmathsetmacro{\bx}{-2.3}   % bif point x (centered)
+  \pgfmathsetmacro{\by}{1.35}   % bif point y (centered)
+  \pgfmathsetmacro{\Lx}{-4.2}   % left edge
+  \pgfmathsetmacro{\Rx}{-0.4}   % right edge
+  \pgfmathsetmacro{\By}{0.0}    % bottom
+  \pgfmathsetmacro{\Ty}{2.7}    % top
+  % Soliton tangent: slope (rise per unit leftward)
+  \pgfmathsetmacro{\msol}{0.42}
+  % Omega=0 line: steeper slope
+  \pgfmathsetmacro{\mom}{0.85}
+  % Soliton at edges
+  \pgfmathsetmacro{\soly}{\by + (\bx - \Lx)*\msol}
+  \pgfmathsetmacro{\solyr}{\by - (\Rx - \bx)*\msol}
+  % Omega=0 at edges
+  \pgfmathsetmacro{\omy}{\by + (\bx - \Lx)*\mom}
+  \pgfmathsetmacro{\omyr}{\by - (\Rx - \bx)*\mom}
+  % Omega=0 might exit through top on left; find exit x on top edge
+  \pgfmathsetmacro{\omxtop}{\bx - (\Ty - \by)/\mom}
+  % Omega=0 might exit through bottom on right; find exit x on bottom edge
+  \pgfmathsetmacro{\omxbot}{\bx + (\by - \By)/\mom}
+  %
+  % --- Fills (clip to inset box) ---
+  \begin{scope}
+    \clip (\Lx,\By) rectangle (\Rx,\Ty);
+    %
+    % GREEN: Omega > 0, steep-slope side
+    % LEFT of bif: between vertical line x = \bx and Omega=0 line (top-left wedge)
+    \fill[green!20]
+      (\bx,\by)
+      -- (\bx,\Ty)
+      -- (\omxtop,\Ty)
+      -- cycle;
+    
+    % RIGHT of bif: between Omega=0 line and vertical line x = \bx (bottom-right wedge)
+    \fill[green!20]
+      (\bx,\by)
+      -- (\bx,\By)
+      -- (\omxbot,\By)
+      -- cycle;
+    % ORANGE: Omega > 0, gentle-slope side
+    % LEFT of bif: between horizontal and soliton tangent going up
+    \fill[orange!20] (\bx,\by) -- (\Lx,\soly) -- (\Lx,\by) -- cycle;
+    % RIGHT of bif: between soliton tangent going down and horizontal
+    \fill[orange!20] (\bx,\by) -- (\Rx,\by) -- (\Rx,\solyr) -- cycle;
+  \end{scope}
+  %
+  % --- Lines ---
+  \draw[thin, gray] (\Lx,\by) -- (\Rx,\by); % horizontal
+  \begin{scope}
+    \clip (\Lx,\By) rectangle (\Rx,\Ty);
+    \draw[orange, dashed, thick] (\Lx,\soly) -- (\Rx,\solyr); % soliton tangent
+    \draw[green!50!black, dashed, thick] (\Lx,\omy) -- (\Rx,\omyr); % Omega=0
+  \end{scope}
+  %
+  % --- Bifurcation curve in inset ---
+  \begin{scope}
+    \clip (\Lx,\By) rectangle (\Rx,\Ty);
+    \draw[very thick, domain=0:2.0, samples=40]
+      plot ({\bx-\x}, {\by + 1.05*\x - 0.04*\x*\x});
+  \end{scope}
+  %
+  % --- Labels ---
+  \node[green!40!black, font=\tiny] at (-2.85, 2.4) {$\Omega_\star > 0$};
+  \node[orange!70!black, font=\tiny] at (-3.65, 1.6) {$\Omega_\star > 0$};
+  \node[font=\tiny] at (-3.65, 2.05) {$\Omega_\star < 0$};
+  \node[gray, font=\scriptsize] at (-3.3, 0.5) {$d\mathcal{N}/dE > 0$};
+  %
+  \fill (\bx,\by) circle (1.5pt);
+  \draw[thick] (\Lx,\By) rectangle (\Rx,\Ty);
+  %
+  % ------- Connecting lines -------
+  \draw[thin, gray] (-1.55, 4.2) -- (\Lx, \Ty);
+  \draw[thin, gray] (-0.45, 4.2) -- (\Rx, \Ty);
+\end{tikzpicture}
+\vspace{-0.5em}
+\subcaption{Full-line (transmission resonance)}
+\end{subfigure}
+\caption{Stability regimes of Corollary~\ref{prop:geometry} as angular sectors at the bifurcation point $(E_\star,\mathcal N_\star)$, classifying the branch's initial direction at $\eps = 0^+$ only. Upper plots show the free-soliton curve $\mathcal N = 4\sqrt{|E|}$ (orange dashed) and a schematic bifurcated branch; the dashed box is magnified below. Stable sectors are shaded (orange: gentle-slope; green: steep-slope), unstable ones unshaded. (a)~SR branch on $\Hd$: steep-slope sector empty (Remark~\ref{rem:geometry-SR}). (b)~TR branch on $\Hf$: all four sectors present, separated by the line $\Omega_\star = 0$ (green dashed).}
+\label{fig:schematic}
+\end{figure}

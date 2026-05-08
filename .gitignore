@@ -1,0 +1,36 @@
+# Julia
+*.cov
+*.jl.*.cov
+deps/build.log
+deps/deps.jl
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Outputs
+examples/output/
+paper_figures/output/
+*.pdf.aux
+*.synctex.gz
+
+# Heavy data — regenerate via paper_figures/regenerate_resim.jl
+data/**/*-resim-psi.jld2
+
+# LaTeX byproducts
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+*.fls
+*.fdb_latexmk
