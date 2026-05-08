@@ -21,13 +21,15 @@ shown in Section 7 of the paper. Top: $|\Psi(x,t)|^2$ profile (with
 $\mathrm{Re}\,\Psi$, $\mathrm{Im}\,\Psi$, and $|\Psi_0|^2$ as faint references).
 Bottom: rescaled spacetime density $\mathrm{asinh}(|\Psi|^2/\rho_0)$.
 
-<video src="https://raw.githubusercontent.com/jacktrnr/nls-resonance-stability/main/videos/fl-sin-pi-A3-dynamics.mp4" autoplay loop muted playsinline width="100%"></video>
+![Figure 7.1 dynamics](videos/fl-sin-pi-A3-dynamics.gif)
 
 *Figure 7.1 dynamics: $V(x) = 3\sin(\pi x)$ on $[-1,1]$. The bifurcated state ejects a soliton and the inner core relaxes onto the stable $E_0$ branch.*
 
-<video src="https://raw.githubusercontent.com/jacktrnr/nls-resonance-stability/main/videos/fl-cos3half-A5-dynamics.mp4" autoplay loop muted playsinline width="100%"></video>
+![Figure 7.2 dynamics](videos/fl-cos3half-A5-dynamics.gif)
 
 *Figure 7.2 dynamics: $V(x) = 5\cos(3\pi x/2)$ on $[-1,1]$. Sign-changing core; the inner state settles on the coexisting $E_1$ branch with slow radiation.*
+
+(Higher-quality MP4s are in [`videos/`](videos/).)
 
 ---
 
